@@ -1,30 +1,34 @@
 const getUserInput = (argument, func = prompt) => {
+  const input = func();
 
-    while (true){
-      const input = func();
-
-        let value;
-      switch (argument){
-        case 'string':{
-          if (input !== ''){
-            return input;
-          }
-          break;
-        }   
-       case 'number': {
-        if (!isNaN (input) && input !== '' ){
-          if (input === null){
-            return null;
-          }
-          return +input;
-        }
-        break;
-       }   
-       default: {console.log('Ошибка аргумента'); return null;}
-    }  
-  } 
+  let value;
+  switch (argument){
+    case 'string': 
+      return value = (input !== '') ? input :null;
+    case 'number': 
+      return value = (!isNaN (input) && input !== '' && input !==null) ? +input :null;
+    default: {
+      console.log('Ошибка аргумента');
+      return null;
+    } 
+  }
 }
 
-  console.log (getUserInput('string', prompt));
- // console.log (getUserInput('number'));
-// console.log (getUserInput('adsdasdasda'));
+function test(inputFunc, args, result) {
+  let testSuccess = inputFunc(...args) === result;
+  if (testSuccess === true) {
+    console.log('Ура!');
+    } else{
+      console.log('Упс ошибочка вышла');
+  }
+}
+
+
+
+test(getUserInput, ['string', () => 'some string'], 'some string');
+test(getUserInput, ['string', () => ''], null);
+test(getUserInput, ['string', () => null], null);
+test(getUserInput, ['number', () => 'text'], null);
+test(getUserInput, ['number', () => '123'], 123);
+test(getUserInput, ['number', () => '123'], '123');
+test(getUserInput, ['фывфывфы', () => '123'], '123');
