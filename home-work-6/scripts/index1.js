@@ -1,7 +1,7 @@
-const getUserInput = (argument) => {
+const getUserInput = (argument, func = prompt) => {
 
     while (true){
-      const input = prompt();
+      const input = func();
 
         let value;
       switch (argument){
@@ -25,6 +25,6 @@ const getUserInput = (argument) => {
   } 
 }
 
- // console.log (getUserInput('string'));
- console.log (getUserInput('number'));
+  console.log (getUserInput('string', prompt));
+ // console.log (getUserInput('number'));
 // console.log (getUserInput('adsdasdasda'));
