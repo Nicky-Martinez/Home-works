@@ -24,11 +24,27 @@ function test(inputFunc, args, result) {
 }
 
 
+function prepareTestDatа(type, value, result) {
+  return [
+    [type, () => value],
+    result,
+  ];
+}
+const testSuite = (func, testData) =>{
+  let testNumber = 1;
+  for (let i of testData){
+    console.log('Тест номер', testNumber++)
+    test(func, ...prepareTestDatа(...i));
+  }
+}
 
-test(getUserInput, ['string', () => 'some string'], 'some string');
-test(getUserInput, ['string', () => ''], null);
-test(getUserInput, ['string', () => null], null);
-test(getUserInput, ['number', () => 'text'], null);
-test(getUserInput, ['number', () => '123'], 123);
-test(getUserInput, ['number', () => '123'], '123');
-test(getUserInput, ['фывфывфы', () => '123'], '123');
+
+
+testSuite(getUserInput, [
+  ['string', 'some string', 'some string'],
+  ['string', '', null],
+  ['string', null, null],
+  ['number', '123', 123],
+  ['number', '123', '123'],
+  ['sjhfgqwjfg', '123', '123']
+]);
