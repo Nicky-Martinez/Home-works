@@ -4,7 +4,7 @@ let S = 2000000;
  let month = years * 12;
  let i = p / 12;
  let aKof = S *((i * (1 + i)**month) / ((1 + i) ** month - 1))
- console.log(aKof);
+ console.log(Math.round(aKof * 100) / 100);
 
 let Pereplata = month * aKof - S;
-console.log(Pereplata);
+console.log(Math.round (Pereplata * 100) / 100);
